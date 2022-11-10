@@ -16,12 +16,12 @@ public class PostgreSQLJDBC {
 
     public static Connection sessionFactory() {
         if (instance == null) {
-            String url = String.format("jdbc:postgresql://%s/%s", URL, BD_NAME);
+            String url = String.format("jdbc:postgresql://%s/%s", "localhost", "database_query_for_interview");
             Properties props = new Properties();
-            props.setProperty("user", USER);
-            props.setProperty("password", PASSWORD);
+            props.setProperty("user", "postgres");
+            props.setProperty("password", "JkeIo99Few");
             try {
-                Connection conn = DriverManager.getConnection(url, props);
+                instance = DriverManager.getConnection(url, props);
             } catch (SQLException e) {
                 e.printStackTrace();
             }

@@ -1,7 +1,7 @@
 create table customers (
    customer_id serial primary key,
-   first_name varchar(30) not null,
-   second_name  varchar(30) not null
+   last_name varchar(30) not null,
+   first_name  varchar(30) not null
 
 );
 create table items (
