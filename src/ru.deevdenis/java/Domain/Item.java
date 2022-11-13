@@ -6,6 +6,11 @@ public class Item {
     private String title;
     private Double price;
 
+    public Item(String title, Double price) {
+        this.title = title;
+        this.price = price;
+    }
+
     public String getTitle() {
         return title;
     }

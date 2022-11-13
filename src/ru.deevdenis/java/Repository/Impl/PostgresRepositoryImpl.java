@@ -2,6 +2,7 @@ package Repository.Impl;
 
 import Configuration.PostgreSQLJDBC;
 import Domain.Customer;
+import Domain.Purchase;
 import Repository.PostgresRepository;
 import com.sun.istack.internal.NotNull;
 
@@ -11,10 +12,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class PostgresRepositoryImpl implements PostgresRepository {
 
-    private Connection connection;
+    private final Connection connection;
 
     public PostgresRepositoryImpl() {
         connection = PostgreSQLJDBC.sessionFactory();
@@ -99,4 +101,5 @@ public class PostgresRepositoryImpl implements PostgresRepository {
 
         return makeQuery(sql);
     }
+
 }

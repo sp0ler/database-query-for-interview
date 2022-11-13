@@ -1,5 +1,7 @@
 import Domain.Customer;
+import Domain.Purchase;
 import Repository.Impl.PostgresRepositoryImpl;
+import Repository.Impl.PurchaseRepositoryImpl;
 import Repository.PostgresRepository;
 import Util.CommandLineFactory;
 
@@ -8,9 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -28,6 +28,7 @@ public class Main {
         }
 
         PostgresRepository repository = new PostgresRepositoryImpl();
+        PurchaseRepositoryImpl purchaseRepository = new PurchaseRepositoryImpl();
 
         List<Customer> list = repository.findAllCustomersByLastname("Иванов");
         System.out.println(list);
@@ -40,6 +41,9 @@ public class Main {
 
         List<Customer> list3 = repository.findAllBadCustomers(4);
         System.out.println(list3);
+
+        List<Purchase> list4 = purchaseRepository.findPurchaseByDate("2022-11-03", "2022-11-06");
+        System.out.println(list4);
 
     }
 

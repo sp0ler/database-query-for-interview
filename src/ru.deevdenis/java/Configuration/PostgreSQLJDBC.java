@@ -28,7 +28,7 @@ public class PostgreSQLJDBC {
     public static Connection sessionFactory() {
         if (instance == null) {
             String url = String.format("jdbc:postgresql://%s/%s", IP, BD_NAME);
-            System.out.println(url);
+
             Properties props = new Properties();
             props.setProperty("user", USER);
             props.setProperty("password", PASSWORD);

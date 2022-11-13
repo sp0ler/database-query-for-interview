@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Purchase {
     private Customer customer;
     private Item item;
-    private Instant time;
+    private String time;
 
     public Customer getCustomer() {
         return customer;
@@ -24,11 +24,11 @@ public class Purchase {
         this.item = item;
     }
 
-    public Instant getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Instant time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
