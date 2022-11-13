@@ -1,18 +1,26 @@
 import Domain.Customer;
 import Repository.Impl.PostgresRepositoryImpl;
 import Repository.PostgresRepository;
+import Util.CommandLineFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Main {
 
     public static void main(String[] args) {
+
+
+        new CommandLineFactory(args);
+
+
         List<String> jsonList = readFile("C:\\dev\\database-query-for-interview\\src\\ru.deevdenis\\resources\\input.json");
 
         for (String s : jsonList) {

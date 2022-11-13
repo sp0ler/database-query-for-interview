@@ -1,22 +1,34 @@
 package Configuration;
 
+import com.sun.istack.internal.NotNull;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Properties;
 
 public class PostgreSQLJDBC {
 
     private static Connection instance;
-    private static final String URL = System.getenv("");
-    private static final String BD_NAME = System.getenv("");
-    private static final String USER = System.getenv("");
-    private static final String PASSWORD = System.getenv("");
+    private static String IP;
+    private static String BD_NAME;
+    private static String USER;
+    private static String PASSWORD;
+
+    public static void initSession(@NotNull String ip,
+                            @NotNull String username,
+                            @NotNull String password,
+                            @NotNull String bdName) {
+        IP = ip;
+        USER = username;
+        PASSWORD = password;
+        BD_NAME = bdName;
+    }
 
     public static Connection sessionFactory() {
         if (instance == null) {
-            String url = String.format("jdbc:postgresql://%s/%s", URL, BD_NAME);
+            String url = String.format("jdbc:postgresql://%s/%s", IP, BD_NAME);
+            System.out.println(url);
             Properties props = new Properties();
             props.setProperty("user", USER);
             props.setProperty("password", PASSWORD);
