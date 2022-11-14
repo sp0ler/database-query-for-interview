@@ -1,8 +1,8 @@
 import Domain.Customer;
 import Domain.Purchase;
-import Repository.Impl.PostgresRepositoryImpl;
+import Repository.Impl.CustomerRepositoryImpl;
 import Repository.Impl.PurchaseRepositoryImpl;
-import Repository.PostgresRepository;
+import Repository.CustomerRepository;
 import Util.CommandLineFactory;
 
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class Main {
             System.out.println(s);
         }
 
-        PostgresRepository repository = new PostgresRepositoryImpl();
+        CustomerRepository repository = new CustomerRepositoryImpl();
         PurchaseRepositoryImpl purchaseRepository = new PurchaseRepositoryImpl();
 
         List<Customer> list = repository.findAllCustomersByLastname("Иванов");

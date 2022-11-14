@@ -2,9 +2,8 @@ package Repository.Impl;
 
 import Configuration.PostgreSQLJDBC;
 import Domain.Customer;
-import Domain.Purchase;
-import Repository.PostgresRepository;
-import com.sun.istack.internal.NotNull;
+import Repository.CustomerRepository;
+import Util.ErrorWriter;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -12,13 +11,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-public class PostgresRepositoryImpl implements PostgresRepository {
+public class CustomerRepositoryImpl implements CustomerRepository {
 
     private final Connection connection;
 
-    public PostgresRepositoryImpl() {
+    public CustomerRepositoryImpl() {
         connection = PostgreSQLJDBC.sessionFactory();
     }
 
@@ -37,7 +35,9 @@ public class PostgresRepositoryImpl implements PostgresRepository {
                 customerList.add(customer);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new Error("Невозможно выполнить запрос к БД. Проверьте ваши входные даные");
+        } catch (NullPointerException e) {
+            throw new Error("Невозможно выполнить подключение к БД. Проверьте данные подключения к БД");
         }
 
         return customerList;

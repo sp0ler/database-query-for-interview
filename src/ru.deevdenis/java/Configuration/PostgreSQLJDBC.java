@@ -1,5 +1,6 @@
 package Configuration;
 
+import Util.ErrorWriter;
 import com.sun.istack.internal.NotNull;
 
 import java.sql.Connection;
@@ -34,8 +35,9 @@ public class PostgreSQLJDBC {
             props.setProperty("password", PASSWORD);
             try {
                 instance = DriverManager.getConnection(url, props);
+
             } catch (SQLException e) {
-                e.printStackTrace();
+                throw new Error("Невозможно подключить к базе данных.");
             }
         }
 
@@ -46,7 +48,7 @@ public class PostgreSQLJDBC {
         try {
             instance.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new Error("Невозможно закрыть сессию к базе данных.");
         }
     }
 }

@@ -4,14 +4,13 @@ import Configuration.PostgreSQLJDBC;
 import Domain.Customer;
 import Domain.Item;
 import Domain.Purchase;
-import Repository.PostgresRepository;
 import Repository.PurchaseRepository;
+import Util.ErrorWriter;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +47,9 @@ public class PurchaseRepositoryImpl implements PurchaseRepository {
                 customerList.add(purchase);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new Error("Невозможно выполнить запрос к БД. Проверьте ваши входные даные");
+        } catch (NullPointerException e) {
+            throw new Error("Невозможно выполнить подключение к БД. Проверьте данные подключения к БД");
         }
 
         return customerList;
