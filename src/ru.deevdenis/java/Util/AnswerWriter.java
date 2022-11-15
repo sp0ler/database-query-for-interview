@@ -29,14 +29,15 @@ public class AnswerWriter {
     private double finalTotalExpenses;
 
     public AnswerWriter() {
+        inputPath = CommandLineFactory.argsMap.get("input");
         outputPath = CommandLineFactory.argsMap.get("output");
 
-        //if (inputPath == null) throw new Error("Файл input.json не найден");
-        //if (outputPath == null) throw new Error("Файл output.json не найден");
+        if (inputPath == null) throw new Error("Файл input.json не найден");
+        if (outputPath == null) throw new Error("Файл output.json не найден");
 
         jsonParser();
 
-        if (jsonList.size() > 10) {
+        if (jsonList.get(1).trim().equals("criterias:")) {
             writeCriteriasAnswer();
             builder.append("   ]\n");
             builder.append("}");
