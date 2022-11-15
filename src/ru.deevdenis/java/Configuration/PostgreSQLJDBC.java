@@ -27,17 +27,24 @@ public class PostgreSQLJDBC {
     }
 
     public static Connection sessionFactory() {
+        System.out.println(IP);
+        System.out.println(USER);
+        System.out.println(PASSWORD);
+        System.out.println(BD_NAME);
+
         if (instance == null) {
             String url = String.format("jdbc:postgresql://%s/%s", IP, BD_NAME);
-
             Properties props = new Properties();
             props.setProperty("user", USER);
             props.setProperty("password", PASSWORD);
             try {
                 instance = DriverManager.getConnection(url, props);
-
             } catch (SQLException e) {
-                throw new Error("Невозможно подключить к базе данных.");
+                System.out.println(e);
+                //throw new Error("Невозможно подключить к базе данных.");
+            } catch (NullPointerException e) {
+                //throw new Error("Параметры подключения к БД не заданы.");
+                System.out.println(e);
             }
         }
 

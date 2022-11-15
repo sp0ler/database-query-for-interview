@@ -29,7 +29,13 @@ public class FileUtils {
     }
 
     public static void writeFile(@NotNull String str,@NotNull String pathFile) {
-        Path path = Paths.get(pathFile);
+        Path path;
+        try {
+            path = Paths.get(pathFile);
+        } catch (NullPointerException e) {
+            throw new Error("Не указан путь output.json");
+        }
+
         byte[] strToBytes = str.getBytes();
 
         try {

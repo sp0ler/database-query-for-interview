@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public class CommandLineFactory {
 
-    private final Map<String, String> argsMap = new HashMap<>();
+    public static final Map<String, String> argsMap = new HashMap<>();
 
     public CommandLineFactory(String[] args) {
         parseArgs(args);

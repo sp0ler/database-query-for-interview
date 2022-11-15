@@ -1,12 +1,12 @@
 package Domain;
 
-import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Purchase {
     private Customer customer;
-    private Item item;
-    private String time;
+    private List<Item> item = new ArrayList<>();
 
     public Customer getCustomer() {
         return customer;
@@ -16,20 +16,16 @@ public class Purchase {
         this.customer = customer;
     }
 
-    public Item getItem() {
+    public void addItem(Item i) {
+        item.add(i);
+    }
+
+    public List<Item> getItem() {
         return item;
     }
 
-    public void setItem(Item item) {
+    public void setItem(List<Item> item) {
         this.item = item;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 
     @Override
@@ -37,12 +33,12 @@ public class Purchase {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Purchase purchase = (Purchase) o;
-        return Objects.equals(customer, purchase.customer) && Objects.equals(item, purchase.item) && Objects.equals(time, purchase.time);
+        return Objects.equals(customer, purchase.customer) && Objects.equals(item, purchase.item);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(customer, item, time);
+        return Objects.hash(customer, item);
     }
 
     @Override
@@ -50,7 +46,6 @@ public class Purchase {
         return "Purchase{" +
                 "customer=" + customer +
                 ", item=" + item +
-                ", time=" + time +
                 '}';
     }
 }

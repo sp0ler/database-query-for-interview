@@ -20,7 +20,8 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         connection = PostgreSQLJDBC.sessionFactory();
     }
 
-    private List<Customer> makeQuery(String sql) {
+    @Override
+    public List<Customer> makeQuery(String sql) {
         ResultSet resultSet;
         List<Customer> customerList = new ArrayList<>();
 
